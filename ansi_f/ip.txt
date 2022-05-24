@@ -1,0 +1,18 @@
+[lb]
+192.168.43.207 ansible_ssh=root ansible_ssh_pass=redhat ansible_connection=ssh
+[webserver]
+192.168.43.21 ansible_ssh=root ansible_ssh_pass=redhat1 ansible_connection=ssh
+
+192.168.43.90 ansible_ssh=root ansible_ssh_pass=redhat1 ansible_connection=ssh
+
+
+[dd]
+192.168.43.90 ansible_ssh=root ansible_ssh_pass=redhat1 ansible_connection=ssh
+
+
+# BEGIN ANSIBLE MANAGED BLOCK
+[docker]
+172.17.0.2 ansible_ssh_user=root ansible_ssh_pass=0110 ansible_connection=ssh
+# END ANSIBLE MANAGED BLOCK
+[main]
+[mywebs]

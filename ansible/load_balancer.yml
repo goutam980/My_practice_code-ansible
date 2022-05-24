@@ -1,0 +1,28 @@
+- hosts: main
+  tasks:
+  - name: "this is for configure load banacer through ansible "
+    package:
+      name: "haproxy"
+  - template:
+      src: "haproxy.cfg"
+      dest: "/etc/haproxy/haproxy.cfg"
+  - service:
+      name: "haproxy"
+      state: restarted
+- hosts: main 
+  tasks:
+  - name: "configure web server node "
+    package: 
+     name: "httpd"
+        
+
+  - service:
+     name: "httpd"
+     state: restarted
+  - template:
+     dest: "/var/www/html/"
+     src: "main.php"
+     
+
+      
+  

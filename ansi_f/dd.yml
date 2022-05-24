@@ -1,0 +1,45 @@
+- hosts: localhost
+  tasks:
+          - name: Add Docker Repo
+            yum_repository:
+                    name: "docker"
+                    description: "docker repo"
+                    baseurl: "https://download.docker.com/linux/centos/7/x86_64/stable"
+                    gpgcheck: no
+          - name: Install Docker 
+            command: "yum install -y docker-ce --nobest"
+          - name: Install python36
+            package:
+                    name: "python36"
+                    state: present
+          - name: Install SDK for python
+            pip:
+                    name: "docker"
+          - name: Start Docker Service
+            service:
+                    name: "docker"
+                    state: started
+                    enabled: yes
+          - name: Pulling docker httpd image 
+            docker_container:
+                    name: "msdocker"
+                    image: "httpd:latest"
+                    state: started
+                    exposed_ports:
+                    - "80"
+                    ports:
+                    - "8888:80"
+                    volumes:
+                    - /webpages:/usr/local/apache2/htdocs/
+
+                
+            register: dock
+          - debug:
+                  var: dock.container.NetworkSettings.IPAddress
+          - name: updating the inventory
+            blockinfile:
+                    block: | 
+                        [docker]
+                        {{ dock.container.NetworkSettings.IPAddress }} ansible_ssh_user=root ansible_ssh_pass=0110 ansible_connection=ssh
+                    path: "/root/ip.txt"
+

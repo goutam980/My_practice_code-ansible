@@ -1,0 +1,12 @@
+- hosts: nodes
+  tasks:
+  - debug:
+      msg: "{{ ansible_facts }}"
+
+  - debug:
+      msg: "{{ ansible_facts['system'] }}"
+      
+
+         
+ 
+  

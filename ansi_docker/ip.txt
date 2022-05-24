@@ -1,0 +1,6 @@
+[docker]
+192.168.43.90 ansible_ssh=root ansible_ssh_pass=redhat1 ansible_connection=ssh
+[webserver]
+192.168.43.21 ansible_ssh=root ansible_ssh_pass=redhat1 ansible_connection=ssh
+192.168.43.168 ansible_ssh=root ansible_ssh_pass=redhat ansible_connection=ssh
+

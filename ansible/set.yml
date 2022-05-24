@@ -1,0 +1,56 @@
+- hosts: nodes
+  tasks:
+  - vars_prompt:
+   - name: "dvd"
+     prompt: "Enter our forder of directory name here>>"
+     private: no 
+   - name: "document_root"
+     prompt: "Enter our location where you want >>"
+     private: no
+
+   - name: "httpd_configuration"
+     prompt: "Enter our path where you want to copy document root file>>"
+     private: no
+
+   - name: "port_no"
+     prompt: "Enter our port number>>"
+     private: no
+   - vars:
+    - dvd_location: "/dev/cdrom"
+
+  - firewalld:
+     port: 8081/tcp
+     permanent: true
+     state: enabled
+    name: "creating directory" 
+  - file:
+     name: {{dvd}}
+
+     state: directory
+  - mount:
+     src: "/dev/cdrom"
+     path: "/dvd"
+     state: mounted
+     fstype: "iso9660"
+  - yum_repository:
+     baseurl: "/dvd/AppStream"
+     name: "mydvd1"
+     gpgcheck: no
+     description: "my yum"
+  - yum_repository:
+     baseurl: "/dvd/BaseOS"
+     name: "mydvd2"
+     gpgcheck: no
+     description: "my yum2"
+ 
+  - package:
+     name: "httpd"
+     state: present
+  - copy:
+     src: "na.html"
+     dest: "/var/www/html"
+  - service:
+     name: "httpd"
+     state: started
+
+

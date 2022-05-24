@@ -1,0 +1,39 @@
+- hosts: nodes
+  tasks:
+  - name: "yum checkup"
+    yum_repository:
+      name: "docker_name"
+      description: "docker-repo"
+      baseurl: "https://download.docker.com/linux/centos/7/x86_64/stable"
+      gpgcheck: no
+  - name: "installing  docker"
+    command: "yum install docker-ce --nobest -y"
+  - name: "docker service start"
+    service:
+      name: "docker"
+      state: started
+      enable: yes
+  - copy:
+     src: "name.html"
+     dest: "/var/www/html"
+  - service: 
+    name: "httpd"
+    state: started
+  - name: Creating container using HTTPD Image 
+    docker_container:
+     name: MyWebServer
+     image: httpd
+     state: started
+     exposed_ports:
+     — "80"
+     ports:
+     — "8888:80"
+     volumes:
+     — /webpages:/usr/local/apache2/htdocs/
+  - name: "installing sdk  though sdk "
+    pip:
+  - name: "docker "
+    docker:
+      name: "os1"
+      image: "ubuntu 18.07"
+

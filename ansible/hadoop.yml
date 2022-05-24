@@ -1,0 +1,12 @@
+- hosts: nodes
+  tasks: 
+  - copy:
+      src: "hadoop-1.2.1-1.x86_64.rpm"
+      dest: "/root/"
+  - copy: 
+      src: "jdk-8u171-linux-x64.rpm"
+      dest: "/root/"
+  - package:
+      name: "yum install jdk-8u171-linux-x64.rpm , hadoop-1.2.1-1.x86_64.rpm"
+      state: present
+

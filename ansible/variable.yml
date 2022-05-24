@@ -1,0 +1,10 @@
+- hosts: nodes
+  vars_prompt:
+   name: password
+   prompt: "bro please enter password"
+
+  tasks:
+   - name: "this is my  first debug "
+     debug:
+       msg: "this is my guru {{ name }}" 
+

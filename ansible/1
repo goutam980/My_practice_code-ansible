@@ -1,0 +1,6 @@
+[main_hosts]
+192.168.43.168 ansible_ssh=root ansible_ssh_pass=redhat ansible_connection=ssh
+[nodes]
+192.168.43.233 ansible_ssh=root ansible_ssh_pass=redhat1 ansible_connection=ssh
+[main]
+192.168.43.90 ansible_ssh=root ansible_ssh_pass=redhat1 ansible_connection=ssh

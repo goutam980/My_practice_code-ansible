@@ -1,0 +1,3 @@
+- hosts: main_hosts
+  roles:
+  - role: "load_role"

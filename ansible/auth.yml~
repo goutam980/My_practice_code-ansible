@@ -1,0 +1,20 @@
+- hosts: nodes
+  tasks:
+   vars_prompt:
+     name: "ht_fold"
+     prompt: "enter your folder name here"
+     private: no 
+    
+   name: "first we have to put .htaccess  file inside our html folder "
+   copy: 
+    src: "htaccess"
+    dest: "/var/www/html"
+   name: "second we need to change the conf file allowoverride"
+   replace:
+
+   name: "we need to install passlib software " 
+   name: "add www.passwd file in conf folder"
+   name: "config .htacess file"
+   name: "add user in passwd file "
+   name: "restart services"
+
